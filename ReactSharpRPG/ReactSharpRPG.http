@@ -1,0 +1,6 @@
+@ReactSharpRPG_HostAddress = http://localhost:5167
+
+GET {{ReactSharpRPG_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
