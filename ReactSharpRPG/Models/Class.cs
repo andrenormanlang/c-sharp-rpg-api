@@ -7,7 +7,7 @@ namespace ReactSharpRPG.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         public string Name { get; set; }    // The name of the class, e.g., "Warrior", "Mage", "Archer"
         public int BaseHealth { get; set; } // Base health for this class

@@ -45,6 +45,17 @@ namespace ReactSharpRPG.Controllers
             return CreatedAtAction(nameof(GetItemById), new { id = item.Id }, item);
         }
 
+        // POST: api/item/bulk
+        [HttpPost("bulk")]
+        public async Task<ActionResult> CreateItemsBulk([FromBody] IEnumerable<Item> items)
+        {
+            foreach (var item in items)
+            {
+                await _itemService.CreateItemAsync(item);
+            }
+            return Ok("Bulk items created successfully.");
+        }
+
         // PUT: api/item/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateItem(string id, [FromBody] Item updatedItem)

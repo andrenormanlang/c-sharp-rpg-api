@@ -14,11 +14,11 @@ namespace ReactSharpRPG.Controllers
 
             Available Endpoints:
 
-            - /api/characters         => Manage your characters 🧙‍♂️🛡️
-            - /api/battles            => Engage in epic battles ⚔️
-            - /api/enemies            => Encounter enemies 👾
-            - /api/items              => Manage items like swords and potions 🗡️
-            - /api/inventories        => Manage character inventories 🎒
+            - /api/character         => Manage your characters 🧙‍♂️🛡️
+            - /api/battle            => Engage in epic battles ⚔️
+            - /api/enemy             => Encounter enemies 👾
+            - /api/item              => Manage items like swords and potions 🗡️
+            - /api/inventory         => Manage character inventories 🎒
 
             Use Swagger at /swagger to explore and interact with the API endpoints 📄. Enjoy your adventure!
             ";

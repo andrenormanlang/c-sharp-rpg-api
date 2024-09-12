@@ -45,6 +45,17 @@ namespace ReactSharpRPG.Controllers
             return CreatedAtAction(nameof(GetClassById), new { id = classEntity.Id }, classEntity);
         }
 
+        // POST: api/class/bulk
+        [HttpPost("bulk")]
+        public async Task<ActionResult> CreateClassesBulk([FromBody] IEnumerable<Class> classes)
+        {
+            foreach (var classEntity in classes)
+            {
+                await _classService.CreateClassAsync(classEntity);
+            }
+            return Ok("Bulk classes created successfully.");
+        }
+
         // PUT: api/class/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClass(string id, [FromBody] Class updatedClass)

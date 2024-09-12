@@ -8,7 +8,7 @@ namespace ReactSharpRPG.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         public string CharacterId { get; set; } // Reference to the character
         public List<ItemEntry> Items { get; set; } = new List<ItemEntry>(); // A list of item entries (an item with a quantity)

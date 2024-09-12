@@ -9,7 +9,7 @@ namespace ReactSharpRPG.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         public string CharacterId { get; set; } // Reference to the player's character
         public string EnemyId { get; set; } // Reference to the enemy

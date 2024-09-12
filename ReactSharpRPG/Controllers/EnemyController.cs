@@ -45,6 +45,18 @@ namespace ReactSharpRPG.Controllers
             return CreatedAtAction(nameof(GetEnemy), new { id = enemy.Id }, enemy);
         }
 
+        // POST: api/enemy/bulk
+        [HttpPost("bulk")]
+        public async Task<ActionResult> CreateEnemiesBulk([FromBody] IEnumerable<Enemy> enemies)
+        {
+            foreach (var enemy in enemies)
+            {
+                await _enemyService.CreateEnemyAsync(enemy);
+            }
+            return Ok("Bulk enemies created successfully.");
+        }
+
+
         // Update an enemy
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEnemy(string id, Enemy updatedEnemy)
