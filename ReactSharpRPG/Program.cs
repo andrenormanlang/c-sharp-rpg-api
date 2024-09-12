@@ -22,6 +22,7 @@ builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IClassRepository, ClassRepository>();
 builder.Services.AddScoped<IClassService, ClassService>();  // ClassService
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();  // InventoryService
 builder.Services.AddScoped<IBattleRepository, BattleRepository>();
