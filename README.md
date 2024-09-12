@@ -4,6 +4,11 @@
 
 **ReactSharpRPG** is a text-based role-playing game (RPG) where players engage with heroes 🦸‍♂️, enemies 🐉, battles ⚔️, and much more! This project demonstrates a fun blend of *C# ASP.NET Core* on the backend with *MongoDB* 🗄️ to store your game data. You can manage your inventory 🎒, fight battles, collect items, and level up characters as a true adventurer! 🚀
 
+### 🌍 Live Deployment:
+The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensuring scalability and security for your RPG adventures!
+
+[Live API Endpoint](https://your-azure-api-endpoint.azurewebsites.net)
+
 ---
 
 ### 🌟 Key Features:
