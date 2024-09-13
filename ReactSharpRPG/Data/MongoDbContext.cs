@@ -13,6 +13,8 @@ namespace ReactSharpRPG.Data
             _database = mongoClient.GetDatabase(databaseName);
         }
 
+        public IMongoCollection<User> Users => _database.GetCollection<User>("Users");
+
         // Collection for Classes
         public IMongoCollection<Class> Classes => _database.GetCollection<Class>("Classes");
 

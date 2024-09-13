@@ -10,8 +10,10 @@ namespace ReactSharpRPG.Controllers
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
     {
+        // Only one declaration for ICharacterService
         private readonly ICharacterService _characterService;
 
+        // Inject ICharacterService via the constructor
         public CharacterController(ICharacterService characterService)
         {
             _characterService = characterService;
@@ -50,7 +52,6 @@ namespace ReactSharpRPG.Controllers
             return CreatedAtAction(nameof(GetCharacter), new { id = character.Id }, character);
         }
 
-
         // Update a character by ID
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCharacter(string id, Character updatedCharacter)
@@ -76,4 +77,3 @@ namespace ReactSharpRPG.Controllers
         }
     }
 }
-

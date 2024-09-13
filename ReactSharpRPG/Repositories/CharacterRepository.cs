@@ -25,6 +25,11 @@ namespace ReactSharpRPG.Repositories
             return await _characters.Find<Character>(character => character.Id == id).FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<Character>> GetCharactersByUserIdAsync(string userId)
+        {
+            return await _characters.Find(character => character.UserId == userId).ToListAsync();
+        }
+
         public async Task CreateCharacterAsync(Character character)
         {
             await _characters.InsertOneAsync(character);
@@ -48,6 +53,7 @@ namespace ReactSharpRPG.Repositories
     {
         Task<IEnumerable<Character>> GetAllCharactersAsync();
         Task<Character> GetCharacterByIdAsync(string id);
+        Task<IEnumerable<Character>> GetCharactersByUserIdAsync(string userId);
         Task CreateCharacterAsync(Character character);
         Task<bool> UpdateCharacterAsync(string id, Character updatedCharacter);
         Task<bool> DeleteCharacterAsync(string id);

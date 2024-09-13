@@ -11,7 +11,6 @@ namespace ReactSharpRPG.Models
 
         public string Name { get; set; }
 
-        // Reference to the character's class by ClassId
         [BsonRepresentation(BsonType.ObjectId)]
         public string ClassId { get; set; }
 
@@ -21,9 +20,10 @@ namespace ReactSharpRPG.Models
         public int Experience { get; set; }
         public int Level { get; set; }
 
-        // Reference to the character's inventory
-        public Inventory Inventory { get; set; }
+        // New field to reference the User who created the character
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string UserId { get; set; }
 
-        // This could be expanded to include abilities, skills, etc.
+        // Other properties...
     }
 }
