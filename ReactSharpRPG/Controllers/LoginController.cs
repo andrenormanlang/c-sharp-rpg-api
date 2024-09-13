@@ -2,6 +2,10 @@
 using MongoDB.Driver;
 using ReactSharpRPG.Data;
 using ReactSharpRPG.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ReactSharpRPG.Controllers
@@ -11,10 +15,12 @@ namespace ReactSharpRPG.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IMongoCollection<User> _users;
+        private readonly IConfiguration _configuration; // Inject configuration to access JWT settings
 
-        public LoginController(MongoDbContext context)
+        public LoginController(MongoDbContext context, IConfiguration configuration)
         {
             _users = context.Users;
+            _configuration = configuration; // Store configuration for JWT secret
         }
 
         [HttpPost("login")]
@@ -26,12 +32,36 @@ namespace ReactSharpRPG.Controllers
                 return Unauthorized("Invalid credentials.");
             }
 
-            // Return the user's ID upon successful login
+            // Generate JWT Token
+            var token = GenerateJwtToken(user);
+
+            // Return token and userId in response
             return Ok(new
             {
                 message = "Login successful",
-                userId = user.Id // Return the user ID here
+                token = token,   // Return JWT token
+                userId = user.Id // Return user ID
             });
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]); // Retrieve JWT secret from configuration
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.Id), // Store user ID as claim
+                    new Claim(ClaimTypes.Email, user.Email)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7), // Token validity (e.g., 7 days)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token); // Return generated token as a string
         }
     }
 }
