@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using ReactSharpRPG.Data;
 using ReactSharpRPG.Repositories;
 using ReactSharpRPG.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +39,25 @@ builder.Services.AddScoped<SeedData>();
 // Add controllers and services to the container
 builder.Services.AddControllers();
 
+// === JWT Authentication ===
+// Fetch JWT secret from the environment or appsettings.json
+var jwtSecret = builder.Configuration["Jwt:Secret"]
+    ?? throw new ArgumentNullException("Jwt:Secret", "JWT Secret is missing from configuration");
+
+// Configure JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,  // Set to true for real environments, to validate the token issuer
+            ValidateAudience = false,  // Set to true for real environments, to validate the token audience
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)),
+            ValidateLifetime = true // Ensure token hasn't expired
+        };
+    });
+
 // Configure Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -57,6 +79,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Enable Authentication and Authorization middleware
+app.UseAuthentication(); // This should come before UseAuthorization
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();
