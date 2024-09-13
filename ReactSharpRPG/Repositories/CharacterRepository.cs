@@ -30,9 +30,10 @@ namespace ReactSharpRPG.Repositories
             return await _characters.Find(character => character.UserId == userId).ToListAsync();
         }
 
-        public async Task CreateCharacterAsync(Character character)
+        public async Task<bool> CreateCharacterAsync(Character character)
         {
             await _characters.InsertOneAsync(character);
+            return true; // Return true if successful
         }
 
         public async Task<bool> UpdateCharacterAsync(string id, Character updatedCharacter)
@@ -48,13 +49,12 @@ namespace ReactSharpRPG.Repositories
         }
     }
 
-    // Define an interface for the repository
     public interface ICharacterRepository
     {
         Task<IEnumerable<Character>> GetAllCharactersAsync();
         Task<Character> GetCharacterByIdAsync(string id);
         Task<IEnumerable<Character>> GetCharactersByUserIdAsync(string userId);
-        Task CreateCharacterAsync(Character character);
+        Task<bool> CreateCharacterAsync(Character character);
         Task<bool> UpdateCharacterAsync(string id, Character updatedCharacter);
         Task<bool> DeleteCharacterAsync(string id);
     }

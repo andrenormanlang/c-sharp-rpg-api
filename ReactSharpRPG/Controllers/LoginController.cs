@@ -12,7 +12,6 @@ namespace ReactSharpRPG.Controllers
     {
         private readonly IMongoCollection<User> _users;
 
-        // Inject MongoDB context
         public LoginController(MongoDbContext context)
         {
             _users = context.Users;
@@ -27,8 +26,12 @@ namespace ReactSharpRPG.Controllers
                 return Unauthorized("Invalid credentials.");
             }
 
-            // Generate a token or session here if needed
-            return Ok(new { message = "Login successful" });
+            // Return the user's ID upon successful login
+            return Ok(new
+            {
+                message = "Login successful",
+                userId = user.Id // Return the user ID here
+            });
         }
     }
 }

@@ -39,6 +39,19 @@ namespace ReactSharpRPG.Controllers
             return Ok(character);
         }
 
+        // Get characters by UserId
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersByUserId(string userId)
+        {
+            var characters = await _characterService.GetCharactersByUserIdAsync(userId);
+            if (characters == null || !characters.Any())
+            {
+                return NotFound("No characters found for this user.");
+            }
+            return Ok(characters);
+        }
+
+
         // Create a new character
         [HttpPost]
         public async Task<ActionResult<Character>> CreateCharacter(Character character)
