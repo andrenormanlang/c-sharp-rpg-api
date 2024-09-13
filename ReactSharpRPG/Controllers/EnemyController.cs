@@ -69,6 +69,22 @@ namespace ReactSharpRPG.Controllers
             return NoContent();
         }
 
+        [HttpPut("bulk")]
+        public async Task<ActionResult> UpdateEnemiesBulk([FromBody] IEnumerable<Enemy> updatedEnemies)
+        {
+            foreach (var enemy in updatedEnemies)
+            {
+                var result = await _enemyService.UpdateEnemyAsync(enemy.Id, enemy);
+                if (!result)
+                {
+                    // Return NotFound if any enemy is not found, you can also choose to continue updating the rest
+                    return NotFound($"Enemy with ID {enemy.Id} not found.");
+                }
+            }
+            return Ok("Bulk enemies updated successfully.");
+        }
+
+
         // Delete an enemy
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEnemy(string id)

@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ReactSharpRPG.Models
 {
+    [BsonIgnoreExtraElements]
     public class Character
     {
         [BsonId]
@@ -20,10 +21,14 @@ namespace ReactSharpRPG.Models
         public int Experience { get; set; }
         public int Level { get; set; }
 
-        // New field to reference the User who created the character
+        // New attributes
+        public int Mana { get; set; }
+        public int Stamina { get; set; }
+        public int Speed { get; set; }
+
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; }
-
-        // Other properties...
     }
+
+
 }

@@ -28,22 +28,48 @@ namespace ReactSharpRPG.Services
 
         public async Task<IEnumerable<Character>> GetCharactersByUserIdAsync(string userId)
         {
-            return await _characterRepository.GetCharactersByUserIdAsync(userId);
+            try
+            {
+                return await _characterRepository.GetCharactersByUserIdAsync(userId);
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Console.WriteLine($"Error fetching characters for userId {userId}: {ex.Message}");
+                return new List<Character>(); // Return an empty list in case of an error
+            }
         }
+
 
         public async Task<bool> CreateCharacterAsync(Character character)
         {
-            // Validate if the ClassId exists
-            var classExists = await _classRepository.GetClassByIdAsync(character.ClassId);
-            if (classExists == null)
+            // Fetch the class data for the selected class
+            var classEntity = await _classRepository.GetClassByIdAsync(character.ClassId);
+
+            if (classEntity == null)
             {
-                // Handle the case when the class does not exist
-                return false; // Alternatively, you can throw an exception
+                // If class does not exist, return false
+                return false;
             }
 
+            // Set base stats from the class
+            character.Health = classEntity.BaseHealth;
+            character.Attack = classEntity.BaseAttack;
+            character.Defense = classEntity.BaseDefense;
+            character.Experience = classEntity.BaseExperience;
+            character.Level = classEntity.BaseLevel;
+
+            // Set new base attributes
+            character.Mana = classEntity.BaseMana;
+            character.Stamina = classEntity.BaseStamina;
+            character.Speed = classEntity.BaseSpeed;
+
+            // Create the character
             await _characterRepository.CreateCharacterAsync(character);
             return true;
         }
+
+
 
         public async Task<bool> UpdateCharacterAsync(string id, Character updatedCharacter)
         {

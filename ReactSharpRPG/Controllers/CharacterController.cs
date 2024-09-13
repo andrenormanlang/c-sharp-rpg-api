@@ -65,6 +65,7 @@ namespace ReactSharpRPG.Controllers
             return CreatedAtAction(nameof(GetCharacter), new { id = character.Id }, character);
         }
 
+
         // Update a character by ID
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCharacter(string id, Character updatedCharacter)

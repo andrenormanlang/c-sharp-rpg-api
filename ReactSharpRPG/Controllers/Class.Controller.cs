@@ -68,6 +68,22 @@ namespace ReactSharpRPG.Controllers
             return NoContent();
         }
 
+        [HttpPut("bulk")]
+        public async Task<ActionResult> UpdateClassesBulk([FromBody] IEnumerable<Class> updatedClasses)
+        {
+            foreach (var classEntity in updatedClasses)
+            {
+                var result = await _classService.UpdateClassAsync(classEntity.Id, classEntity);
+                if (!result)
+                {
+                    // Return NotFound if any class is not found, you can also choose to continue updating the rest
+                    return NotFound($"Class with ID {classEntity.Id} not found.");
+                }
+            }
+            return Ok("Bulk classes updated successfully.");
+        }
+
+
         // DELETE: api/class/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClass(string id)
