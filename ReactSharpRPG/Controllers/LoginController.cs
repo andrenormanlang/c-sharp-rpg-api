@@ -35,12 +35,11 @@ namespace ReactSharpRPG.Controllers
             // Generate JWT Token
             var token = GenerateJwtToken(user);
 
-            // Return token and userId in response
+            // Return only the JWT token in the response
             return Ok(new
             {
                 message = "Login successful",
-                token = token,   // Return JWT token
-                userId = user.Id // Return user ID
+                token = token   // Return JWT token only
             });
         }
 
@@ -56,7 +55,7 @@ namespace ReactSharpRPG.Controllers
                     new Claim(ClaimTypes.Name, user.Id), // Store user ID as claim
                     new Claim(ClaimTypes.Email, user.Email)
                 }),
-                Expires = DateTime.UtcNow.AddDays(7), // Token validity (e.g., 7 days)
+                Expires = DateTime.UtcNow.AddHours(6), 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
