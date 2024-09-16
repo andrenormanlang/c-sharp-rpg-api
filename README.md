@@ -1,13 +1,13 @@
-# ReactSharpRPG API 🎮💻
+# C# RPG API 🎮💻
 
-## Welcome to the ReactSharpRPG API 🎉
+## Welcome to the C# RPG API 🎉
 
-**ReactSharpRPG** is a text-based role-playing game (RPG) where players engage with heroes 🦸‍♂️, enemies 🐉, battles ⚔️, and much more! This project demonstrates a fun blend of *C# ASP.NET Core* on the backend with *MongoDB* 🗄️ to store your game data. You can manage your inventory 🎒, fight battles, collect items, and level up characters as a true adventurer! 🚀
+**C# RPG API** is a text-based role-playing game (RPG) where players engage with heroes 🦸‍♂️, enemies 🐉, battles ⚔️, and much more! This project demonstrates a fun blend of *C# ASP.NET Core* on the backend with *MongoDB* 🗄️ to store your game data. You can manage your inventory 🎒, fight battles, collect items, and level up characters as a true adventurer! 🚀
 
 ### 🌍 Live Deployment:
 The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensuring scalability and security for your RPG adventures!
 
-[Live API Endpoint](https://reactsharprpgapp.azurewebsites.net/api/)
+[Live API Endpoint](https://csharprpgapp.azurewebsites.net/api/)
 
 ---
 
@@ -29,7 +29,7 @@ The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensu
 ### 🔧 Installation and Setup:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/andrenormanlang/react-sharp-api.git
+   git clone https://github.com/andrenormanlang/c-sharp-api.git
    ```
 
 2. Navigate to the project directory:
