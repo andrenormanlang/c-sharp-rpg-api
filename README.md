@@ -7,7 +7,7 @@
 ### 🌍 Live Deployment:
 The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensuring scalability and security for your RPG adventures!
 
-[Live API Endpoint](https://csharprpgapp.azurewebsites.net/api/)
+[Live API Endpoint](https://csharprpg.azurewebsites.net/api/)
 
 ---
 
