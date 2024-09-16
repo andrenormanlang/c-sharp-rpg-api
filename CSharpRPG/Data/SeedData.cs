@@ -107,23 +107,31 @@ namespace ReactSharpRPG.Data
 
         private async Task SeedBattlesAsync()
         {
-            // Fetch enemies from the database
+            // Fetch enemy IDs
             var goblin = await _context.Enemies.Find(e => e.Name == "Goblin").FirstOrDefaultAsync();
             var orc = await _context.Enemies.Find(e => e.Name == "Orc").FirstOrDefaultAsync();
 
-            // Fetch characters from the database
-            var thorin = await _context.Characters.Find(c => c.Name == "Thorin").FirstOrDefaultAsync();
-            var gandalf = await _context.Characters.Find(c => c.Name == "Gandalf").FirstOrDefaultAsync();
-
             var battles = new List<Battle>
-            {
-                new Battle { BattleName = "First Encounter", Characters = new List<string> { thorin.Id, gandalf.Id }, Enemies = new List<Enemy> { goblin } },
-                new Battle { BattleName = "Orc Invasion", Characters = new List<string> { thorin.Id }, Enemies = new List<Enemy> { orc } },
-                // Add more battles...
-            };
+    {
+        new Battle
+        {
+            BattleName = "First Encounter",
+            Description = "First encounter with a goblin",
+            EnemyIds = new List<string> { goblin.Id },
+            BattleDate = DateTime.UtcNow
+        },
+        new Battle
+        {
+            BattleName = "Orc Invasion",
+            Description = "An orc invasion battle",
+            EnemyIds = new List<string> { orc.Id },
+            BattleDate = DateTime.UtcNow
+        }
+    };
 
             await _context.Battles.InsertManyAsync(battles);
         }
+
 
         private async Task SeedInventoryAsync()
         {

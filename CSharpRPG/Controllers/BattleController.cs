@@ -17,6 +17,17 @@ namespace ReactSharpRPG.Controllers
             _battleService = battleService;
         }
 
+        // POST: api/battle/bulk
+        [HttpPost("bulk")]
+        public async Task<ActionResult> CreateBattlesBulk([FromBody] IEnumerable<Battle> battles)
+        {
+            foreach (var battle in battles)
+            {
+                await _battleService.CreateBattleAsync(battle);
+            }
+            return Ok("Bulk battles created successfully.");
+        }
+
         // Get all battles
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Battle>>> GetBattles()
@@ -35,38 +46,6 @@ namespace ReactSharpRPG.Controllers
                 return NotFound();
             }
             return Ok(battle);
-        }
-
-        // Create a new battle
-        [HttpPost]
-        public async Task<ActionResult<Battle>> CreateBattle(Battle battle)
-        {
-            await _battleService.CreateBattleAsync(battle);
-            return CreatedAtAction(nameof(GetBattle), new { id = battle.Id }, battle);
-        }
-
-        // Update a battle by ID
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBattle(string id, Battle updatedBattle)
-        {
-            var result = await _battleService.UpdateBattleAsync(id, updatedBattle);
-            if (!result)
-            {
-                return NotFound();
-            }
-            return NoContent();
-        }
-
-        // Delete a battle by ID
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBattle(string id)
-        {
-            var result = await _battleService.DeleteBattleAsync(id);
-            if (!result)
-            {
-                return NotFound();
-            }
-            return NoContent();
         }
     }
 }
