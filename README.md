@@ -22,7 +22,7 @@ The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensu
 ### 💻 Tech Stack:
 - **Backend**: C# (ASP.NET Core) 🖥️
 - **Database**: MongoDB 🗄️
-- **Frontend**: (To be integrated with React/Tailwind/DaisyUI) ⚛️🌬️
+- **Frontend**: (To be integrated with Svelte/Tailwind/DaisyUI & React/Tailwind/DaisyUI) ⚛️🌬️
 
 ---
 
