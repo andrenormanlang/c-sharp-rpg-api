@@ -1,11 +1,11 @@
 ﻿// InventoryService.cs
-using ReactSharpRPG.Models;
-using ReactSharpRPG.Repositories;
-using ReactSharpRPG.Services;
+using CSharpRPG.Models;
+using CSharpRPG.Repositories;
+using CSharpRPG.Services;
 using System.Threading.Tasks;
 
 
-namespace ReactSharpRPG.Services
+namespace CSharpRPG.Services
 {
     public class InventoryService : IInventoryService
     {

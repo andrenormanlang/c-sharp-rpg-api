@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ReactSharpRPG.Models;
-using ReactSharpRPG.Services;
+using CSharpRPG.Models;
+using CSharpRPG.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ReactSharpRPG.Controllers
+namespace CSharpRPG.Controllers
 {
     [ApiController]
     [Route("api/class")]  // Set the route to match the singular form

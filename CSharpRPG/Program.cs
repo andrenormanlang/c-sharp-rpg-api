@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
-using ReactSharpRPG.Data;
-using ReactSharpRPG.Repositories;
-using ReactSharpRPG.Services;
+using CSharpRPG.Data;
+using CSharpRPG.Repositories;
+using CSharpRPG.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

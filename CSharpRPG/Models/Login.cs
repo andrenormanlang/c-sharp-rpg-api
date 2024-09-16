@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Microsoft.AspNetCore.Identity;
 
-namespace ReactSharpRPG.Models
+namespace CSharpRPG.Models
 {
     public class LoginModel
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ReactSharpRPG.Controllers
+namespace CSharpRPG.Controllers
 {
     [ApiController]
     [Route("api")]
@@ -10,7 +10,7 @@ namespace ReactSharpRPG.Controllers
         public IActionResult Get()
         {
             var message = @"
-            User has connected to the ReactSharpRPG API 🎮💻. Welcome, adventurer!
+            User has connected to the CSharpRPG API 🎮💻. Welcome, adventurer!
 
             Available Endpoints:
 

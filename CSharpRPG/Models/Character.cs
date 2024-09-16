@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ReactSharpRPG.Models
+namespace CSharpRPG.Models
 {
     [BsonIgnoreExtraElements]
     public class Character

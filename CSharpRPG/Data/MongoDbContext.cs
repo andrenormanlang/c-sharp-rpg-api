@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
-using ReactSharpRPG.Models;
+using CSharpRPG.Models;
 
-namespace ReactSharpRPG.Data
+namespace CSharpRPG.Data
 {
     public class MongoDbContext
     {

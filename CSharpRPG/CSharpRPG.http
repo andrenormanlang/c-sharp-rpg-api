@@ -1,6 +1,6 @@
-@ReactSharpRPG_HostAddress = http://localhost:5167
+@CSharpRPG_HostAddress = http://localhost:5167
 
-GET {{ReactSharpRPG_HostAddress}}/weatherforecast/
+GET {{CSharpRPG_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

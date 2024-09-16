@@ -1,9 +1,9 @@
 ﻿using MongoDB.Driver;
-using ReactSharpRPG.Data;
-using ReactSharpRPG.Models;
+using CSharpRPG.Data;
+using CSharpRPG.Models;
 using System.Threading.Tasks;
 
-namespace ReactSharpRPG.Repositories
+namespace CSharpRPG.Repositories
 {
 
     public class ItemRepository : IItemRepository

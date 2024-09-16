@@ -1,9 +1,9 @@
-﻿using ReactSharpRPG.Models;
-using ReactSharpRPG.Repositories;
+﻿using CSharpRPG.Models;
+using CSharpRPG.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ReactSharpRPG.Services
+namespace CSharpRPG.Services
 {
     public class ClassService : IClassService
     {

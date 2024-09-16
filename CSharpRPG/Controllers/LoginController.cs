@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using ReactSharpRPG.Data;
-using ReactSharpRPG.Models;
+using CSharpRPG.Data;
+using CSharpRPG.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReactSharpRPG.Controllers
+namespace CSharpRPG.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
-namespace ReactSharpRPG.Models
+namespace CSharpRPG.Models
 {
     public class Inventory
     {

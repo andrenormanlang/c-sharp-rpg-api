@@ -1,6 +1,6 @@
-﻿using ReactSharpRPG.Models;
+﻿using CSharpRPG.Models;
 
-namespace ReactSharpRPG.Utilities
+namespace CSharpRPG.Utilities
 {
     public static class GameUtilities
     {

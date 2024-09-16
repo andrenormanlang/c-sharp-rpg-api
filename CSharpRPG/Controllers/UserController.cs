@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using ReactSharpRPG.Models; // Your existing models
+using CSharpRPG.Models; // Your existing models
 using System.Threading.Tasks;
 using BCrypt.Net;
-using ReactSharpRPG.Data;
+using CSharpRPG.Data;
 
-namespace ReactSharpRPG.Controllers
+namespace CSharpRPG.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

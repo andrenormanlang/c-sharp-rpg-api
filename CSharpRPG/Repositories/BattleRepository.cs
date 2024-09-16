@@ -1,10 +1,10 @@
 ﻿using MongoDB.Driver;
-using ReactSharpRPG.Data;
-using ReactSharpRPG.Models;
+using CSharpRPG.Data;
+using CSharpRPG.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ReactSharpRPG.Repositories
+namespace CSharpRPG.Repositories
 {
     public class BattleRepository : IBattleRepository
     {

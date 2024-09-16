@@ -1,9 +1,9 @@
 ﻿using MongoDB.Driver;
-using ReactSharpRPG.Models;
+using CSharpRPG.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ReactSharpRPG.Data
+namespace CSharpRPG.Data
 {
     public class SeedData
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ReactSharpRPG.Utilities
+namespace CSharpRPG.Utilities
 {
     public static class RandomNumberGenerator
     {
