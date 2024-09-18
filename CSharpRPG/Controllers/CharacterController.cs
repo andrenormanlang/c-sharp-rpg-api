@@ -3,6 +3,7 @@ using CSharpRPG.Models;
 using CSharpRPG.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace CSharpRPG.Controllers
 {
@@ -41,16 +42,21 @@ namespace CSharpRPG.Controllers
 
         // Get characters by UserId
         [HttpGet("user/{userId}")]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersByUserId(string userId)
+        public async Task<IActionResult> GetCharactersByUserId(string userId)
         {
+            if (!ObjectId.TryParse(userId, out _))
+            {
+                return BadRequest("Invalid user ID format.");
+            }
+
             var characters = await _characterService.GetCharactersByUserIdAsync(userId);
             if (characters == null || !characters.Any())
             {
                 return NotFound("No characters found for this user.");
             }
+
             return Ok(characters);
         }
-
 
         // Create a new character
         [HttpPost]

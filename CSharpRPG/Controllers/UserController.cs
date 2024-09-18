@@ -4,6 +4,7 @@ using CSharpRPG.Models; // Your existing models
 using System.Threading.Tasks;
 using BCrypt.Net;
 using CSharpRPG.Data;
+using MongoDB.Bson;
 
 namespace CSharpRPG.Controllers
 {
@@ -45,6 +46,46 @@ namespace CSharpRPG.Controllers
 
             return Ok(new { message = "User registered successfully" });
         }
+
+        // GET: api/user/all
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _users.Find(_ => true).ToListAsync(); // Fetch all users from the collection
+
+            // Check if users are available
+            if (users == null || users.Count == 0)
+            {
+                return NotFound("No users found.");
+            }
+
+            return Ok(users); // Return the list of users
+        }
+
+
+        // GET: api/user/{id}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            // Convert string to ObjectId
+            if (!ObjectId.TryParse(id, out var objectId))
+            {
+                return BadRequest("Invalid user ID format.");
+            }
+
+            // Query the database for the user
+            var user = await _users.Find(u => u.Id == objectId.ToString()).FirstOrDefaultAsync();
+
+            // Check if user exists
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            return Ok(user); // Return the user data
+        }
+
+        
     }
 }
 

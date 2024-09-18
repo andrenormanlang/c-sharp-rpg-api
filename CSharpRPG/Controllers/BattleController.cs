@@ -47,5 +47,25 @@ namespace CSharpRPG.Controllers
             }
             return Ok(battle);
         }
+
+        [HttpPost("{battleId}/fight")]
+        public async Task<ActionResult<BattleResult>> FightBattle(string battleId, [FromBody] FightRequest request)
+        {
+            try
+            {
+                var result = await _battleService.ExecuteBattle(request.CharacterId, battleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        public class FightRequest
+        {
+            public string CharacterId { get; set; }
+        }
+
     }
 }

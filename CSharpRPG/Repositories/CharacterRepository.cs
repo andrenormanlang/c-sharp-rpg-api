@@ -3,6 +3,7 @@ using CSharpRPG.Data;
 using CSharpRPG.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace CSharpRPG.Repositories
 {
@@ -27,7 +28,15 @@ namespace CSharpRPG.Repositories
 
         public async Task<IEnumerable<Character>> GetCharactersByUserIdAsync(string userId)
         {
-            return await _characters.Find(character => character.UserId == userId).ToListAsync();
+            // Convert string to ObjectId
+            if (!ObjectId.TryParse(userId, out var objectId))
+            {
+                throw new ArgumentException("Invalid ObjectId format for userId.");
+            }
+
+            // Query using the ObjectId
+            var characters = await _characters.Find(c => c.UserId == objectId.ToString()).ToListAsync();
+            return characters;
         }
 
         public async Task<bool> CreateCharacterAsync(Character character)

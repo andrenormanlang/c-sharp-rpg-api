@@ -26,6 +26,7 @@ namespace CSharpRPG.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
+            // Find user by email
             var user = await _users.Find(u => u.Email == model.Email).FirstOrDefaultAsync();
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
             {
@@ -35,11 +36,13 @@ namespace CSharpRPG.Controllers
             // Generate JWT Token
             var token = GenerateJwtToken(user);
 
-            // Return only the JWT token in the response
+            // Return the JWT token and userId in the response
             return Ok(new
             {
                 message = "Login successful",
-                token = token   // Return JWT token only
+                token = token,     // Return JWT token
+                // TODO discover a way to decode the token to provide the user id
+                userId = user.Id   // Explicitly return the userId
             });
         }
 
@@ -48,19 +51,21 @@ namespace CSharpRPG.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]); // Retrieve JWT secret from configuration
 
+            // Add claims to store user ID and email in the token
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id), // Store user ID as claim
+                    new Claim(ClaimTypes.NameIdentifier, user.Id), // Store user ID as a claim
                     new Claim(ClaimTypes.Email, user.Email)
                 }),
-                Expires = DateTime.UtcNow.AddHours(6), 
+                Expires = DateTime.UtcNow.AddHours(6),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
+            // Create and write the token
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token); // Return generated token as a string
+            return tokenHandler.WriteToken(token);
         }
     }
 }

@@ -36,6 +36,20 @@ builder.Services.AddScoped<IEnemyService, EnemyService>();
 // Register SeedData to populate initial data
 builder.Services.AddScoped<SeedData>();
 
+// Enable CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:5173", "http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+});
+
+
 // Add controllers and services to the container
 builder.Services.AddControllers();
 
@@ -80,7 +94,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Enable Authentication and Authorization middleware
+// Use CORS
+app.UseCors("AllowFrontend");
+
+// Enable Authentication and Authorization middle ware
 app.UseAuthentication(); // This should come before UseAuthorization
 app.UseAuthorization();
 
