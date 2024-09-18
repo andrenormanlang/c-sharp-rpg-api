@@ -7,7 +7,7 @@
 ### 🌍 Live Deployment:
 The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensuring scalability and security for your RPG adventures!
 
-[Live API Endpoint](https://csharprpgapp.azurewebsites.net/api/)
+[Live API Endpoint](https://csharprpg.azurewebsites.net/api/)
 
 ---
 
@@ -22,7 +22,10 @@ The API is deployed on **Azure** ☁️ for production-ready cloud hosting, ensu
 ### 💻 Tech Stack:
 - **Backend**: C# (ASP.NET Core) 🖥️
 - **Database**: MongoDB 🗄️
-- **Frontend**: (To be integrated with React/Tailwind/DaisyUI) ⚛️🌬️
+- **Frontend**: (To be integrated with Svelte/Tailwind/DaisyUI) 🌬️
+  
+![CatMouseGIF](https://github.com/user-attachments/assets/45f22d10-b0c1-427e-9531-c42e73b4cc9d)
+
 
 ---
 
