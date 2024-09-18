@@ -42,6 +42,7 @@ namespace CSharpRPG.Controllers
                 message = "Login successful",
                 token = token,     // Return JWT token
                 // TODO discover a way to decode the token to provide the user id
+                // Adding for now to allow the front end to use the userId
                 userId = user.Id   // Explicitly return the userId
             });
         }
