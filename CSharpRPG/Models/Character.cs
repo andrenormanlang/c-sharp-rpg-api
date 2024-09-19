@@ -15,6 +15,8 @@ namespace CSharpRPG.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string ClassId { get; set; }
 
+        public string ClassName { get; set; }
+
         public int Health { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }

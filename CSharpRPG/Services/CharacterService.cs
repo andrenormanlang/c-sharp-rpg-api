@@ -1,5 +1,6 @@
 ﻿using CSharpRPG.Models;
 using CSharpRPG.Repositories;
+using CSharpRPG.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -39,6 +40,18 @@ namespace CSharpRPG.Services
                 return new List<Character>(); // Return an empty list in case of an error
             }
         }
+
+        public async Task<IEnumerable<CharacterWithClassDto>> GetCharactersWithClassesAsync()
+        {
+            return await _characterRepository.GetAllCharactersWithClassesAsync();
+        }
+
+
+        public async Task<CharacterWithClassDto> GetCharacterWithClassByIdAsync(string id)
+        {
+            return await _characterRepository.GetCharacterWithClassByIdAsync(id);
+        }
+
 
 
         public async Task<bool> CreateCharacterAsync(Character character)
@@ -91,5 +104,8 @@ namespace CSharpRPG.Services
         Task<bool> CreateCharacterAsync(Character character);
         Task<bool> UpdateCharacterAsync(string id, Character updatedCharacter);
         Task<bool> DeleteCharacterAsync(string id);
+        Task<IEnumerable<CharacterWithClassDto>> GetCharactersWithClassesAsync();
+        Task<CharacterWithClassDto> GetCharacterWithClassByIdAsync(string id); // Add this line
+
     }
 }

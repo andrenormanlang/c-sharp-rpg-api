@@ -4,6 +4,7 @@ using CSharpRPG.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using CSharpRPG.Dtos;
 
 namespace CSharpRPG.Controllers
 {
@@ -22,22 +23,22 @@ namespace CSharpRPG.Controllers
 
         // Get all characters
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
+        public async Task<ActionResult<IEnumerable<CharacterWithClassDto>>> GetCharacters()
         {
-            var characters = await _characterService.GetCharactersAsync();
-            return Ok(characters);
+            var charactersWithClasses = await _characterService.GetCharactersWithClassesAsync();
+            return Ok(charactersWithClasses);
         }
 
         // Get a character by ID
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(string id)
+        public async Task<ActionResult<CharacterWithClassDto>> GetCharacter(string id)
         {
-            var character = await _characterService.GetCharacterByIdAsync(id);
-            if (character == null)
+            var characterWithClass = await _characterService.GetCharacterWithClassByIdAsync(id);
+            if (characterWithClass == null)
             {
                 return NotFound();
             }
-            return Ok(character);
+            return Ok(characterWithClass);
         }
 
         // Get characters by UserId
