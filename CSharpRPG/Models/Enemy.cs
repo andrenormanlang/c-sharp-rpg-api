@@ -14,6 +14,12 @@ namespace CSharpRPG.Models
         public int Health { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
+        public int Dodge { get; set; }
+
+        public int CriticalHit { get; set; }
+
+        public int Speed { get; set; }
+        public int CriticalHitChance { get; set; }
         public int ExperienceReward { get; set; } // Experience awarded when defeated
     }
 }

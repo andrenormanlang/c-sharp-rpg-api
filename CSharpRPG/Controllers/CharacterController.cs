@@ -50,13 +50,13 @@ namespace CSharpRPG.Controllers
                 return BadRequest("Invalid user ID format.");
             }
 
-            var characters = await _characterService.GetCharactersByUserIdAsync(userId);
-            if (characters == null || !characters.Any())
+            var charactersWithClasses = await _characterService.GetCharactersWithClassesByUserIdAsync(userId);
+            if (charactersWithClasses == null || !charactersWithClasses.Any())
             {
                 return NotFound("No characters found for this user.");
             }
 
-            return Ok(characters);
+            return Ok(charactersWithClasses);
         }
 
         // Create a new character

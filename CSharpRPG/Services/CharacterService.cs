@@ -52,6 +52,20 @@ namespace CSharpRPG.Services
             return await _characterRepository.GetCharacterWithClassByIdAsync(id);
         }
 
+        public async Task<IEnumerable<CharacterWithClassDto>> GetCharactersWithClassesByUserIdAsync(string userId)
+        {
+            var characters = await _characterRepository.GetCharactersByUserIdAsync(userId);
+            var result = new List<CharacterWithClassDto>();
+
+            foreach (var character in characters)
+            {
+                var characterClass = await _classRepository.GetClassByIdAsync(character.ClassId);
+                result.Add(new CharacterWithClassDto(character, characterClass));
+            }
+
+            return result;
+        }
+
 
 
         public async Task<bool> CreateCharacterAsync(Character character)
@@ -106,6 +120,7 @@ namespace CSharpRPG.Services
         Task<bool> DeleteCharacterAsync(string id);
         Task<IEnumerable<CharacterWithClassDto>> GetCharactersWithClassesAsync();
         Task<CharacterWithClassDto> GetCharacterWithClassByIdAsync(string id); // Add this line
+        Task<IEnumerable<CharacterWithClassDto>> GetCharactersWithClassesByUserIdAsync(string userId);
 
     }
 }

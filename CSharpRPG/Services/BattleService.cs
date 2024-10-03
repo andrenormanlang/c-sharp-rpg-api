@@ -29,7 +29,21 @@ namespace CSharpRPG.Services
             if (character == null || battle == null)
                 throw new Exception("Character or Battle not found.");
 
-            var enemy = await _enemyService.GetEnemyByIdAsync(battle.EnemyIds[0]); // Assume one enemy per battle for simplicity
+            // Fetch enemies based on EnemyIds in the battle
+            var enemies = new List<Enemy>();
+            foreach (var enemyId in battle.EnemyIds)
+            {
+                var enemy = await _enemyService.GetEnemyByIdAsync(enemyId);
+                if (enemy != null)
+                {
+                    enemies.Add(enemy);
+                }
+            }
+
+            // Assuming you want to fight the first enemy
+            var enemyToFight = enemies.FirstOrDefault();
+            if (enemyToFight == null)
+                throw new Exception("Enemy not found.");
 
             // Simulate dice rolls for both player and enemy
             var playerRoll = RandomNumberGenerator.GenerateRandomNumber(1, 6);
@@ -41,7 +55,7 @@ namespace CSharpRPG.Services
             if (playerRoll > enemyRoll)
             {
                 result = "win";
-                character.Experience += enemy.ExperienceReward;
+                character.Experience += enemyToFight.ExperienceReward;
 
                 // Level up the character if experience crosses threshold
                 if (character.Experience >= GameUtilities.CalculateExperienceForNextLevel(character.Level))
