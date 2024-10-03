@@ -3,12 +3,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+COPY CSharpRPG/*.csproj ./CSharpRPG/
+RUN dotnet restore ./CSharpRPG/CSharpRPG.csproj
 
 # Copy everything else and build the project
 COPY . ./
-RUN dotnet publish -c Release -o /app/out
+RUN dotnet publish ./CSharpRPG/CSharpRPG.csproj -c Release -o /app/out
 
 # Stage 2: Build a runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -24,3 +24,4 @@ EXPOSE 5000
 
 # Run the application
 ENTRYPOINT ["dotnet", "CSharpRPG.dll"]
+
